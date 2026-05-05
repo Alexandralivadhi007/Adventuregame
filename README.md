@@ -1,4 +1,6 @@
 Group 5: Kymani, Gabriel, Alexandra
+
+
 For our project we decided to make a text based adventure game, this game is
 designed for everyone interested in decision making games and interactive storytelling.
 The game will allow users to explore different scenarios, make different choices, and
