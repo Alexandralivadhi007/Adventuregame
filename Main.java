@@ -5,9 +5,9 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-
+        Story story = new Story();
         Player player = new Player();
-
+        int rightPathCount = 0;
         boolean running = true;
 
         System.out.println("=================================");
@@ -20,7 +20,7 @@ public class Main {
         while (running && player.isAlive()) {
 
             System.out.println("---------------------------------");
-            System.out.println("Player Health: " + player.health);
+            System.out.println("Player Health: " + player.getTotalHealth());
             System.out.println("---------------------------------");
 
             // Display choices
@@ -45,43 +45,21 @@ public class Main {
             {
 
                 case 1:
-                    System.out.println();
-                    System.out.println("You walk down the left path...");
-                    System.out.println("A wild enemy attacks!");
-
-                    player.health -= 20;
-
-                    System.out.println("You survived the attack.");
-                    System.out.println("Health remaining: " + player.health);
-                    System.out.println();
+                    story.leftPath(player);
                     break;
 
                 case 2:
-                    System.out.println();
-                    System.out.println("You walk down the right path...");
-                    System.out.println("You found a healing potion!");
-
-                    player.health += 10;
-
-                    System.out.println("Your health increased.");
-                    System.out.println("Health: " + player.health);
-                    System.out.println();
+                    rightPathCount++;
+                    story.rightPath(player, rightPathCount, input);
                     break;
 
                 case 3:
-                    System.out.println();
-                    System.out.println("You enter the cave...");
-
-                    if (player.health >= 80) {
-                        System.out.println("You defeat the cave monster!");
-                        System.out.println("YOU WIN!");
+                    story.cavePath(player);
+                    if (player.health <= 0) {
                         running = false;
-                    } else {
-                        System.out.println("The cave monster was too strong.");
-                        player.health = 0;
+                    }else {
+                        running = false;
                     }
-
-                    System.out.println();
                     break;
 
                 case 4:
